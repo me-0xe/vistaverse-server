@@ -1,0 +1,219 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Vistaverse server",
+        "description": "express server for vistaverse project",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "tags": [
+        {
+            "name": "Admin",
+            "description": "API for Admin functions of the system"
+        }
+    ],
+    "consumes": [
+        "appliexampleion/json"
+    ],
+    "produces": [
+        "appliexampleion/json"
+    ],
+    "paths": {
+        "/admin": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get all Admin in system",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/admin"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Create a new example in system",
+                "requestBody": {
+                    "description": "Example Object",
+                    "required": true,
+                    "content": {
+                        "appliexampleion/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Example"
+                            }
+                        }
+                    }
+                },
+                "produces": [
+                    "appliexampleion/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    }
+                }
+            }
+        },
+        "/admin/{id}": {
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "required": true,
+                    "description": "ID of the example that we want to match",
+                    "type": "string"
+                }
+            ],
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Get example with given ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Example with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Example"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Example not found."
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update example with given ID",
+                "tags": [
+                    "Admin"
+                ],
+                "requestBody": {
+                    "description": "Example Object",
+                    "required": true,
+                    "content": {
+                        "appliexampleion/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Example"
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Example with new values of properties",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Example"
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                    },
+                    "404": {
+                        "description": "Failed. Example not found."
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete example with given ID",
+                "tags": [
+                    "Admin"
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "description": "Delete Example with id",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/id"
+                        }
+                    },
+                    "404": {
+                        "description": "Failed. Example not found."
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "id": {
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                }
+            }
+        },
+        "Example": {
+            "type": "object",
+            "properties": {
+                "genus": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "testBool": {
+                    "type": "boolean"
+                },
+                "testString": {
+                    "type": "string"
+                }
+            }
+        },
+        "Admin": {
+            "type": "object",
+            "properties": {
+                "Admin": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "$ref": "#/definitions/Example"
+                    }
+                }
+            }
+        }
+    }
+}
