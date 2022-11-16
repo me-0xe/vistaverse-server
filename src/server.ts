@@ -5,11 +5,11 @@ import helmet from 'helmet';
 import { errorMiddleware } from './middleware/error.middleware';
 import { notFoundMiddleware } from './middleware/not-found.middleware';
 import admin from './routes/api/admin';
-import test from './routes/api/test';
+import account from './routes/api/account';
 import morgan from 'morgan';
-import * as swaggerDocument from '../config/swagger';
 
 const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('../config/swagger');
 
 dotenv.config();
 
@@ -38,7 +38,7 @@ app.use(express.json());
  * @return {object} 200 - success response
  */
 app.use('/api/admin', admin);
-app.use('/api/test', test);
+app.use('/api/account', account);
 app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
