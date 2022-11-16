@@ -1,6 +1,6 @@
 # Server
 
-Simple work in progress node-express server.
+Simple node-express server for the Innovation cup hackathon.
 
 ## Dev
 
