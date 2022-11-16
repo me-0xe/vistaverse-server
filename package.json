@@ -16,6 +16,7 @@
     "config": "^3.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "ethers": "^5.7.2",
     "express": "^4.16.3",
     "express-jsdoc-swagger": "^1.8.0",
     "helmet": "^4.6.0",
