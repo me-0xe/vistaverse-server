@@ -68,6 +68,15 @@ router.get('/transfer', async (req: Request, res: Response) => {
 // @desc    Get balance
 // @access  Public
 // @response OwnedNft[]
+router.get('/getNftsForAccount', async (req: Request, res: Response) => {
+  try {
+    const nfts = await alchemyClient.nft.getNftsForOwner(req.query.accountId as string);
+    res.json(nfts.ownedNfts);
+  } catch (err: any) {
+    console.error(err.message);
+    res.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send('Server Error');
+  }
+});
 
 
 
