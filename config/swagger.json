@@ -11,6 +11,10 @@
     },
     "tags": [
         {
+            "name": "Account",
+            "description": "API for functions that get account information"
+        },
+        {
             "name": "Admin",
             "description": "API for Admin functions of the system"
         }
@@ -22,17 +26,17 @@
         "appliexampleion/json"
     ],
     "paths": {
-        "/admin": {
+        "/account/get-add-nfts?accountId={id}": {
             "get": {
                 "tags": [
-                    "Admin"
+                    "Account"
                 ],
-                "summary": "Get all Admin in system",
+                "summary": "Get all Nfs for the provided accountId",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/admin"
+                            "$ref": "#/definitions/account"
                         }
                     }
                 }
@@ -204,7 +208,7 @@
                 }
             }
         },
-        "Admin": {
+        "account": {
             "type": "object",
             "properties": {
                 "Admin": {
