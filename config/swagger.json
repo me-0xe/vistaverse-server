@@ -40,147 +40,42 @@
                         }
                     }
                 }
-            },
-            "post": {
-                "tags": [
-                    "Admin"
-                ],
-                "summary": "Create a new example in system",
-                "requestBody": {
-                    "description": "Example Object",
-                    "required": true,
-                    "content": {
-                        "appliexampleion/json": {
-                            "schema": {
-                                "$ref": "#/definitions/Example"
-                            }
-                        }
-                    }
-                },
-                "produces": [
-                    "appliexampleion/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/id"
-                        }
-                    },
-                    "400": {
-                        "description": "Failed. Bad post data."
-                    }
-                }
             }
+          
         },
-        "/admin/{id}": {
-            "parameters": [
-                {
-                    "name": "id",
-                    "in": "path",
-                    "required": true,
-                    "description": "ID of the example that we want to match",
-                    "type": "string"
-                }
-            ],
+        "/admin/token-quantities?address={contract-address}": {
             "get": {
                 "tags": [
                     "Admin"
                 ],
-                "summary": "Get example with given ID",
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "required": true,
-                        "description": "Example with id",
-                        "schema": {
-                            "$ref": "#/definitions/id"
-                        }
-                    }
-                ],
+                "summary": "Get count of standard and vip tickets for contract address",
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/Example"
+                            "$ref": "#/definitions/account"
                         }
-                    },
-                    "404": {
-                        "description": "Failed. Example not found."
-                    }
-                }
-            },
-            "put": {
-                "summary": "Update example with given ID",
-                "tags": [
-                    "Admin"
-                ],
-                "requestBody": {
-                    "description": "Example Object",
-                    "required": true,
-                    "content": {
-                        "appliexampleion/json": {
-                            "schema": {
-                                "$ref": "#/definitions/Example"
-                            }
-                        }
-                    }
-                },
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "required": true,
-                        "description": "Example with new values of properties",
-                        "schema": {
-                            "$ref": "#/definitions/id"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/Example"
-                        }
-                    },
-                    "400": {
-                        "description": "Failed. Bad post data."
-                    },
-                    "404": {
-                        "description": "Failed. Example not found."
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete example with given ID",
-                "tags": [
-                    "Admin"
-                ],
-                "parameters": [
-                    {
-                        "in": "path",
-                        "name": "id",
-                        "required": true,
-                        "description": "Delete Example with id",
-                        "schema": {
-                            "$ref": "#/definitions/id"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/id"
-                        }
-                    },
-                    "404": {
-                        "description": "Failed. Example not found."
                     }
                 }
             }
+          
+        },
+        "/admin/transfer?contractId={contractId}&vip={'true'||'false'}&accountId={id}": {
+            "get": {
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Transfer a token to a specified wallet.",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/account"
+                        }
+                    }
+                }
+            }
+          
         }
     },
     "definitions": {
@@ -208,7 +103,7 @@
                 }
             }
         },
-        "account": {
+        "Admin": {
             "type": "object",
             "properties": {
                 "Admin": {
